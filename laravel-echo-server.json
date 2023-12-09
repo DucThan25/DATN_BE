@@ -1,0 +1,34 @@
+{
+    "authHost": "http://localhost",
+    "authEndpoint": "/broadcasting/auth",
+    "clients": [
+        {
+            "appId": "your-app-id",
+            "key": "your-app-key"
+        }
+    ],
+    "database": "mysql",
+    "databaseConfig": {
+        "mysql": {
+            "host": "127.0.0.1",
+            "port": 3306,
+            "user": "root",
+            "password": "",
+            "database": "doan_tn"
+        }
+    },
+    "devMode": true,
+    "host": null,
+    "port": "6001",
+    "protocol": "http",
+    "socketio": {},
+    "sslCertPath": "",
+    "sslKeyPath": "",
+    "sslCertChainPath": "",
+    "sslPassphrase": "",
+    "apiOriginAllow": {
+        "allowCors": true,
+        "allowOrigin": "http://localhost:8080",
+        "allowMethods": "OPTIONS, POST, GET, PUT, DELETE"
+    }
+}

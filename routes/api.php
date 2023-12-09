@@ -10,6 +10,7 @@ use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -112,5 +113,10 @@ Route::group(['middleware' => ['api']], function () {
     Route::group(['prefix' => 'notifies', 'middleware'=>['jwt.auth']], function () {
         Route::get('/', [NotifyController::class, 'list']);
         Route::get('/read/{id}', [NotifyController::class, 'read']);
+    });
+    Route::group(['prefix' => 'chat', 'middleware'=>['jwt.auth']], function () {
+        Route::get('/rooms', [ChatController::class, 'rooms']);
+        Route::get('/room/{roomId}/messages', [ChatController::class, 'message']);
+        Route::post('/room/{roomId}/message', [ChatController::class, 'newMessage']);
     });
 });
