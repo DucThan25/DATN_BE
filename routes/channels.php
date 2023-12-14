@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use App\Models\Chat;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -22,4 +23,10 @@ Broadcast::channel('chat.{roomId}', function ($user,$roomId) {
     		'name'=>$user->name
     	];
     //}
+});
+Broadcast::channel('chat.{id}', function ($user, $id) {
+    $chat = Chat::find($id);
+    if($chat->isParticipant($user->id)){
+        return ['id' => $user->id, 'name' => $user->first_name];
+    }
 });

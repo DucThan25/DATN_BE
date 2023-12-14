@@ -118,5 +118,12 @@ Route::group(['middleware' => ['api']], function () {
         Route::get('/rooms', [ChatController::class, 'rooms']);
         Route::get('/room/{roomId}/messages', [ChatController::class, 'message']);
         Route::post('/room/{roomId}/message', [ChatController::class, 'newMessage']);
+        //chat user
+        Route::get('/get-chats',[ChatController::class, 'getChats']);
+        Route::post('/create-chat',[ChatController::class, 'createChat']);
+        Route::get('/get-chat-by-id/{chat}',[ChatController::class, 'getChatById']);
+        Route::post('/send-text-message',[ChatController::class, 'sendTextMessage']);
+        Route::post('/search-user',[ChatController::class, 'searchUsers']);
+        Route::get('/message-status/{message}',[ChatController::class, 'messageStatus']);
     });
 });
