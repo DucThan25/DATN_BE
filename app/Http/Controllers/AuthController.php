@@ -138,23 +138,18 @@ class AuthController extends Controller
 
     }
 
-    public function redirect($driver)
+    public function redirect()
     {
-        return Socialite::driver($driver)->redirect();
+        return Socialite::driver('google')->stateless()->redirect();
     }
-
-    public function callBack($driver)
+    
+    public function callBack()
     {
         try{
             $paramUser = [];
-            if($driver == Constant::TYPE_LOGIN['FACEBOOK']) {
-                $user = Socialite::driver(Constant::TYPE_LOGIN['FACEBOOK'])->user();
-                $paramUser['type_account'] = User::TYPE_ACCOUNT['FACEBOOK'];
-            }
-            if ($driver == Constant::TYPE_LOGIN['GOOGLE']) {
-                $user = Socialite::driver(Constant::TYPE_LOGIN['GOOGLE'])->user();
-                $paramUser['type_account'] = User::TYPE_ACCOUNT['GOOGLE'];
-            }
+            $user = Socialite::driver('google')->stateless()->user();
+            $paramUser['type_account'] = User::TYPE_ACCOUNT['GOOGLE'];
+            
             $findUser = $this->authRepository->getFirst($user->getEmail());
             if(!$findUser) {
                 $paramUser['email'] = $user->getEmail();

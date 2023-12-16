@@ -31,8 +31,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['api']], function () {
     Route::group(['prefix' => 'auth'], function () {
-        Route::get('/{driver}/redirect', [AuthController::class, 'redirect']);
-        Route::get('/{driver}/callback', [AuthController::class, 'callBack']);
+        Route::get('/google/redirect', [AuthController::class, 'redirect']);
+        Route::get('/google/callback', [AuthController::class, 'callBack']);
         Route::get('/logout', [AuthController::class, 'logout']);
         Route::post('/register', [AuthController::class, 'register']);
         Route::post('/change-password', [AuthController::class, 'changePassword']);
