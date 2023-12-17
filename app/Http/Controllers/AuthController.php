@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\ChangePasswordRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Jobs\SendConfirmationMail;
 use App\Jobs\SendConfirmationMailPass;
+use App\Jobs\SendResetsPass;
 use App\Mail\VerifyEmail;
 use App\Models\User;
 use App\Repositories\Auth\AuthRepository;
@@ -81,6 +82,19 @@ class AuthController extends Controller
             ]);
             $this->responseError();
         }
+    }
+
+    public function forgotpass()
+    {
+        $credentials = request(['email']);
+        $user = User::where('email',$credentials['email'])->first();
+        if (!$user) {
+            return $this->responseError(['email' => 'Email không tồn tại trong hệ thống']);
+        }
+        $user->password = User::PASSWORD_DEFAULT;
+        $user->save();
+        SendResetsPass::dispatch($user);
+        return $this->responseSuccess(['message' => 'Gửi mail xác nhận thành công']);   
     }
 
     public function register(RegisterRequest $request)

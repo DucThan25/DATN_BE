@@ -37,6 +37,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('/register', [AuthController::class, 'register']);
         Route::post('/change-password', [AuthController::class, 'changePassword']);
         Route::post('/login', [AuthController::class, 'login']);
+        Route::post('/forgot', [AuthController::class, 'forgotpass']);
         Route::get('/verify-email/{token}', [AuthController::class, 'confirmEmail']);
     });
     Route::group(['prefix'=>'home', 'middleware'=>['jwt.auth']], function() {
