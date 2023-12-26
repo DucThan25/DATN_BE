@@ -119,6 +119,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::get('/rooms', [ChatController::class, 'rooms']);
         Route::get('/room/{roomId}/messages', [ChatController::class, 'message']);
         Route::post('/room/{roomId}/message', [ChatController::class, 'newMessage']);
+        Route::post('/create-room',[ChatController::class,'createChatRoom']);
         //chat user
         Route::get('/get-chats',[ChatController::class, 'getChats']);
         Route::post('/create-chat',[ChatController::class, 'createChat']);

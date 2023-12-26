@@ -41,6 +41,15 @@ class ChatController extends Controller
         broadcast(new NewChatMessageRoom($newMessage , auth()->user()))->toOthers();
         return  $newMessage;
     }
+    public function createChatRoom(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $room = ChatRoom::create([
+            'name' => $request->input('name'),
+        ]);
+        return response()->json(['data' => $room]);
+    }
 
     // chat user
 
