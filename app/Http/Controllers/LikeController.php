@@ -47,6 +47,7 @@ class LikeController extends Controller
                         'type' => Notify::TYPE_NOTIFY['LIKE'],
                         'check_read' => Notify::CHECK_READ['NOT_SEEN'],
                         'group_id' => $userCreatePost->group_id,
+                        'post_id' => $createLike->post_id
                     ];
                     $this->notifyRepository->create($paramNotify);
                 }
@@ -57,6 +58,7 @@ class LikeController extends Controller
                         'type' => Notify::TYPE_NOTIFY['LIKE'],
                         'check_read' => Notify::CHECK_READ['NOT_SEEN'],
                         'group_id' => NULL,
+                        'post_id' => $createLike->post_id
                     ];
                     $this->notifyRepository->create($paramNotify);
                 }

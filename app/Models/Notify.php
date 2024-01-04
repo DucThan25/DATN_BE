@@ -14,7 +14,8 @@ class Notify extends Model
         'receiver_id',
         'type',
         'check_read',
-        'group_id'
+        'group_id',
+        'post_id'
     ];
 
     const TYPE_NOTIFY = [
